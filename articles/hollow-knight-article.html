@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hollow Knight Review</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="article-page-body">
+
+    <!-- Simple Navigation Header -->
+    <header>
+        <div class="logo"><a href="index.html" style="color: inherit; text-decoration: none;">← Static.VG</a></div>
+        <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
+    </header>
+
+    <main class="single-article-container">
+        <!-- Structural Content Fields To Be Populated via JavaScript -->
+        <div class="article-meta-header">
+            <span id="article-view-category" class="badge">CATEGORY</span>
+            <span id="article-view-score"></span>
+        </div>
+
+        <h1 id="article-view-title">Loading Headline...</h1>
+        
+        <div class="author-byline">
+            <div class="author-info">
+                <span class="author-name">By Adam Zayn</span>
+                <span id="article-view-date" class="publish-date">November 1, 2026</span>
+            </div>
+        </div>
+
+        <hr class="article-divider">
+
+        <!-- Main Body Content Block -->
+        <article id="article-view-body" class="article-body-content">
+            <!-- Full reading text strings load dynamically here -->
+        </article>
+    </main>
+
+    <!-- Connect your engine file -->
+    <script src="app.js"></script>
+</body>
+</html>

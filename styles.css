@@ -532,3 +532,70 @@ body.light-theme .homepage-score-box {
     background-color: #10b981; /* Brighter mint green layout adjustment */
     color: #ffffff !important;
 }
+/* --- SINGLE FULL ARTICLE VIEWER STYLES --- */
+.single-article-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+#article-view-title {
+    font-size: 2.8rem;
+    line-height: 1.15;
+    font-weight: 800;
+    margin: 15px 0 25px 0;
+    color: var(--text-color);
+}
+
+.article-meta-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-byline {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-top: 1px solid #1f2937;
+    border-bottom: 1px solid #1f2937;
+    margin-bottom: 30px;
+}
+
+body.light-theme .author-byline {
+    border-color: #cbd5e1;
+}
+
+.author-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin-right: 15px;
+}
+
+.publish-date {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.article-divider {
+    border: none;
+    height: 1px;
+    background-color: #1f2937;
+    margin-bottom: 30px;
+}
+
+.article-body-content {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    letter-spacing: -0.1px;
+}
+
+/* Adjustments for responsive reading viewports */
+@media (max-width: 768px) {
+    #article-view-title {
+        font-size: 2rem;
+    }
+}

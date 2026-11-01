@@ -2,12 +2,19 @@ let allItems = [];
 let currentCategory = 'all';
 
 document.addEventListener("DOMContentLoaded", () => {
-    fetchContent();
-    setupTabListeners();
-    setupSearchListener();
-    setupThemeToggle();
-    setupModalCloseListener();
+    // 🎯 CHECK IF THE USER IS ON THE ARTICLE PAGE
+    if (window.location.pathname.includes("hollow-knight-article.html")) {
+        loadFullArticlePage(); // If yes, only run the article loading code
+    } else {
+        // If no (they are on the home page), run the standard home page setup
+        fetchContent();
+        setupTabListeners();
+        setupSearchListener();
+        setupNewsletterForm();
+    }
+    setupThemeToggle(); // This runs on both pages perfectly
 });
+
 
 async function fetchContent() {
     try {
@@ -138,28 +145,11 @@ function renderFeed(articles) {
 }
 
 
-// 👁️ MODAL CONTROLLER FUNCTIONS 👁️
+    // 🎯 REDIRECT USER TO THE NEW ARTICLE PAGE WHEN CLICKED
 window.openArticleModal = function(id) {
-    const article = allItems.find(item => item.id === id);
-    if (!article) return;
-
-    document.getElementById('modal-title').textContent = article.title;
-    document.getElementById('modal-category').textContent = article.category;
-    document.getElementById('modal-date').textContent = `Published on: ${article.date}`;
-    
-    // Inject the deep structural reading text block (fall back to excerpt if blank)
-    document.getElementById('modal-body').textContent = article.fullReview || article.excerpt;
-
-    const scoreWrap = document.getElementById('modal-score-wrap');
-    if (article.score) {
-        scoreWrap.innerHTML = `<span class="score-badge" style="font-size:1.1rem; padding: 6px 12px;">Final Score: ⭐ ${article.score}</span>`;
-    } else {
-        scoreWrap.innerHTML = '';
-    }
-
-    // Toggle the display mode configuration class structure from none -> flex
-    document.getElementById('review-modal').style.display = 'flex';
+    window.location.href = `hollow-knight-article.html?id=${id}`;
 };
+
 
 function setupModalCloseListener() {
     const modal = document.getElementById('review-modal');
@@ -226,4 +216,39 @@ function setupThemeToggle() {
     });
 }
 
+// 🎯 NEW ENGINE WRITER FUNCTION FOR THE ARTICLE PAGE
+async function loadFullArticlePage() {
+    try {
+        const response = await fetch('content.json');
+        const articles = await response.json();
+
+        // Look at the address bar link and extract the ID number (like ?id=2)
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = parseInt(urlParams.get('id'));
+
+        const currentArticle = articles.find(item => item.id === articleId);
+
+        if (!currentArticle) {
+            document.getElementById('article-view-title').textContent = "Article Not Found";
+            return;
+        }
+
+        // Inject the text strings directly into your article.html structural fields
+        document.title = `${currentArticle.title} | Static.VG`;
+        document.getElementById('article-view-title').textContent = currentArticle.title;
+        document.getElementById('article-view-category').textContent = currentArticle.category;
+        document.getElementById('article-view-date').textContent = currentArticle.date;
+        document.getElementById('article-view-body').textContent = currentArticle.fullReview || currentArticle.excerpt;
+
+        const scoreBox = document.getElementById('article-view-score');
+        if (currentArticle.score) {
+            scoreBox.innerHTML = `<span class="homepage-score-box">🏆 Final Rating: ${currentArticle.score}</span>`;
+        } else {
+            scoreBox.innerHTML = '';
+        }
+
+    } catch (err) {
+        console.error("Critical failure during full article view rendering:", err);
+    }
+}
 
