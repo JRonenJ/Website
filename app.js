@@ -117,15 +117,18 @@ function renderFeed(articles) {
 
     articles.forEach(article => {
         const card = document.createElement('div');
-        card.className = 'card';
+        card.className = 'card review-list-card';
         card.style.cursor = 'pointer';
         card.setAttribute('onclick', `openArticleModal(${article.id})`);
         
-        const scoreBadge = article.score ? `<span class="score-badge">⭐ ${article.score}</span>` : '';
+        // 🎯 UPGRADED STRUCTURAL SCORE BADGE
+        const scoreBadge = article.score ? `<span class="homepage-score-box">🏆 ${article.score}</span>` : '';
 
         card.innerHTML = `
-            <span class="badge">${article.category}</span>
-            ${scoreBadge}
+            <div class="card-header-row">
+                <span class="badge">${article.category}</span>
+                ${scoreBadge}
+            </div>
             <h3>${article.title}</h3>
             <p>${article.excerpt}</p>
             <small>📅 Published: ${article.date}</small>
@@ -133,6 +136,7 @@ function renderFeed(articles) {
         feedContainer.appendChild(card);
     });
 }
+
 
 // 👁️ MODAL CONTROLLER FUNCTIONS 👁️
 window.openArticleModal = function(id) {

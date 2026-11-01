@@ -506,3 +506,29 @@ body.light-theme #hero-right-timeline {
         font-size: 1.6rem;
     }
 }
+/* Card alignment wrapper adjustments */
+.card-header-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+/* 🟢 Homepage Article Card Score Badge */
+.homepage-score-box {
+    background-color: #059669; /* Emerald Green */
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Light Theme Override to ensure bright readability */
+body.light-theme .homepage-score-box {
+    background-color: #10b981; /* Brighter mint green layout adjustment */
+    color: #ffffff !important;
+}
