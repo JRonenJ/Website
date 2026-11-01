@@ -12,8 +12,6 @@
     <!-- Simple Navigation Header -->
     <header>
         <div class="header-navigation-left">
-            <!-- 🔙 Dynamic Back Button linking to previous history states -->
-            <button onclick="window.history.back()" class="nav-back-history-btn">← Back</button>
 
             <!-- Brand Image Logo functioning as home navigation -->
             <div class="logo">
@@ -27,6 +25,10 @@
     </header>
 
     <main class="single-article-container">
+        <!-- 🎯 THE BACK BUTTON IS NOW PLACED RIGHT HERE -->
+    <div class="article-top-nav-row">
+        <button onclick="window.history.back()" class="nav-back-history-btn">← Back to Feed</button>
+    </div>
         <div class="article-meta-header">
             <span id="article-view-category" class="badge">CATEGORY</span>
             <span id="article-view-score"></span>
@@ -47,9 +49,6 @@
         <!-- Main Body Content Block -->
         <article id="article-view-body" class="article-body-content">
             <!-- Full rich content loads here -->
-    
-            <!-- 📸 NEW: Top Spotlight Video Element Container -->
-        
 
         </article>
 

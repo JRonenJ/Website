@@ -815,25 +815,35 @@ body.light-theme .user-comment-bubble {
     opacity: 0.85;         /* Soft visual response indicator on hover states */
 }
 
-/* 🎯 THE INDEPENDENT BACK BUTTON SKIN */
-.nav-back-history-btn {
+/* Container wrap for the article inline back button alignment hookups */
+.article-top-nav-row {
+    margin-bottom: 24px; /* Generous vertical cushion pushing down the tags */
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Polish up the button styling for its new position */
+.article-top-nav-row .nav-back-history-btn {
     background-color: transparent;
-    border: 1px solid #4b5563;
-    color: var(--text-color);
+    border: 1px solid #334155;
+    color: #94a3b8; /* Muted aesthetic color shift so it doesn't distract from the title */
     padding: 6px 14px;
     border-radius: 4px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.15s ease;
 }
-.nav-back-history-btn:hover {
+
+.article-top-nav-row .nav-back-history-btn:hover {
     background-color: var(--accent-color);
     border-color: var(--accent-color);
     color: #ffffff;
 }
 
-/* Light Theme correction to preserve button visibility edges */
-body.light-theme .nav-back-history-btn {
+/* Light Theme correction helper paths */
+body.light-theme .article-top-nav-row .nav-back-history-btn {
     border-color: #cbd5e1;
+    color: #475569;
 }
+
