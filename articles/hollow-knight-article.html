@@ -11,7 +11,18 @@
 
     <!-- Simple Navigation Header -->
     <header>
-        <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">← STATIC.VG</a></div>
+        <div class="header-navigation-left">
+            <!-- 🔙 Dynamic Back Button linking to previous history states -->
+            <button onclick="window.history.back()" class="nav-back-history-btn">← Back</button>
+
+            <!-- Brand Image Logo functioning as home navigation -->
+            <div class="logo">
+                <a href="../index.html">
+                    <img src="../assets/static-logo.png" alt="Static.VG Brand Logo" class="navbar-logo-img">
+                </a>
+            </div>
+        </div>
+
         <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
     </header>
 
@@ -31,32 +42,14 @@
         </div>
 
         <!-- 📸 NEW: Top Spotlight Header Image Element Container -->
-        <div id="article-view-header-image"></div>
-        <img id="article-view-header-image" src="../assets/hollow-knight-silksong-background.png" alt="Hollow Knight: Silksong Header Image" class="article-header-image" height="auto" width="100%">
+        <div id="article-view-image-container"></div>
 
         <!-- Main Body Content Block -->
         <article id="article-view-body" class="article-body-content">
             <!-- Full rich content loads here -->
-             As we know, Hollow Knight: Silksong is the highly anticipated sequel to the critically acclaimed indie game Hollow Knight. Developed by Team Cherry, Silksong promises to deliver an even more expansive and challenging experience for fans of the original. The game follows Hornet, a new protagonist, as she navigates through a mysterious kingdom filled with new enemies, intricate platforming challenges, and a captivating story.
-            
+    
             <!-- 📸 NEW: Top Spotlight Video Element Container -->
-                    <div class="custom-video-player" id="player-container-1">
-                <!-- The actual video element (Notice the controls attribute is completely GONE) -->
-                <video class="video-element" src="../assets/acap.mp4" prepend="metadata"></video>
-                
-                <!-- Modern control bar overlay layer -->
-                <div class="video-controls-bar">
-                    <button class="play-pause-btn">▶</button>
-                    
-                    <div class="timeline-slider-wrapper">
-                        <div class="progress-bar-fill"></div>
-                    </div>
-                    
-                    <div class="time-display-badge">0:00 / 0:00</div>
-                    
-                    <button class="fullscreen-toggle-btn">⛶</button>
-                </div>
-            </div>
+        
 
         </article>
 

@@ -796,3 +796,44 @@ body.light-theme .user-comment-bubble {
     font-size: 0.85rem;
     color: #cbd5e1;
 }
+
+/* Inline alignment wrapper block for navigation buttons */
+.header-navigation-left {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Perfect spacing cushion between your Back button and your Logo image */
+}
+
+/* 🎯 NAVBAR BRAND LOGO IMAGE CONSTRAINTS */
+.navbar-logo-img {
+    height: 40px;          /* Forces your logo down to a uniform navbar asset size */
+    width: auto;           /* Automatically calculates width properties to prevent warping */
+    display: block;
+    transition: opacity 0.15s ease;
+}
+.navbar-logo-img:hover {
+    opacity: 0.85;         /* Soft visual response indicator on hover states */
+}
+
+/* 🎯 THE INDEPENDENT BACK BUTTON SKIN */
+.nav-back-history-btn {
+    background-color: transparent;
+    border: 1px solid #4b5563;
+    color: var(--text-color);
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+.nav-back-history-btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #ffffff;
+}
+
+/* Light Theme correction to preserve button visibility edges */
+body.light-theme .nav-back-history-btn {
+    border-color: #cbd5e1;
+}

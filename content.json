@@ -2,13 +2,14 @@
   {
     "id": 1,
     "category": "Review",
-    "title": "Hollow Knight: Silksong - Worth the Generational Wait",
-    "headerImage": "assets/hollow-knight-silksong-background.png",
+    "title": "How Team Cherry's Hollow Knight: Silksong Redefines Indie Metroidvanias",
+    "headerImage": "../assets/hollow-knight-silksong-background.png",
     "excerpt": "A masterclass in level design and kinetic action combat that sets a massive new benchmark for indie metroidvanias.",
     "score": "10/10",
     "date": "2026-11-01",
     "isSponsor": false,
-    "featured": true
+    "featured": true,
+    "fullReview": "<p>Team Cherry has crafted a sprawling combat ecosystem that sets a massive new bar for independent metroidvanias. Mechanics feel beautifully fluid, responsive, and incredibly fast-paced.</p><p>According to <a href='https://me.ign.com/en/the-elder-scrolls-6/249346/the-elder-scrolls-6-is-reportedly-subtitled-sentinel-new-story-details-revealed-ahead-of-rumored-ann' target='_blank'>IGN</a>, the game delivers an unparalleled experience.</p><p>Check out our custom editorial gameplay look compilation footage below:</p><div class='custom-video-player' id='player-container-1'><video class='video-element' src='../assets/acap.mp4' prepend='metadata'></video><div class='video-controls-bar'><button class='play-pause-btn'>▶</button><div class='timeline-slider-wrapper'><div class='progress-bar-fill'></div></div><div class='time-display-badge'>0:00 / 0:00</div><button class='fullscreen-toggle-btn'>⛶</button></div></div><p>Explore the kingdom map borders and optimize early game configurations using our dedicated tips panel charts.</p>"
   },
   {
     "id": 2,

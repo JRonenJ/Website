@@ -240,16 +240,33 @@ async function loadFullArticlePage() {
         document.getElementById('article-view-category').textContent = currentArticle.category;
         document.getElementById('article-view-date').textContent = currentArticle.date;
 
-        // 📸 Dynamic Header Image Renderer
+        // 📋 UPDATED SAFETY CONTAINER RENDERING LOGIC:
         const imgContainer = document.getElementById('article-view-image-container');
+        if (imgContainer) {
         if (currentArticle.headerImage) {
-            imgContainer.innerHTML = `<img src="${currentArticle.headerImage}" class="article-header-banner" alt="Story Graphic">`;
-        } else {
-            imgContainer.innerHTML = '';
+        // Clear out any old content inside the box
+        imgContainer.innerHTML = ''; 
+        
+        // Create the image element safely using pure JavaScript mechanics
+        const articleImg = document.createElement('img');
+        
+        // Pass the image path directly (e.g. "../assets/banner.jpg")
+        articleImg.src = currentArticle.headerImage; 
+        articleImg.className = "article-header-banner";
+        articleImg.alt = "Story Headline Graphic Banner";
+        
+        // Safely slide the completed image element into your container box
+        imgContainer.appendChild(articleImg);
+    } else {
+        imgContainer.innerHTML = '';
+    }
+}
+
+        // Wrap your body text injector with a safety check too!
+        const bodyContainer = document.getElementById('article-view-body');
+        if (bodyContainer) {
+            bodyContainer.innerHTML = currentArticle.fullReview || currentArticle.excerpt;
         }
-
-
-        document.getElementById('article-view-body').innerHTML = currentArticle.fullReview || currentArticle.excerpt;
 
         // Dynamic category colors setup
         const scoreBox = document.getElementById('article-view-score');
