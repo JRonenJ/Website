@@ -147,7 +147,7 @@ function renderFeed(articles) {
 
     // 🎯 REDIRECT USER TO THE NEW ARTICLE PAGE WHEN CLICKED
 window.openArticleModal = function(id) {
-    window.location.href = `hollow-knight-article.html?id=${id}`;
+    window.location.href = `articles/hollow-knight-article.html?id=${id}`;
 };
 
 
@@ -219,7 +219,7 @@ function setupThemeToggle() {
 // 🎯 NEW ENGINE WRITER FUNCTION FOR THE ARTICLE PAGE
 async function loadFullArticlePage() {
     try {
-        const response = await fetch('content.json');
+        const response = await fetch('../content.json'); // '../' steps out of the folder
         const articles = await response.json();
 
         // Look at the address bar link and extract the ID number (like ?id=2)
