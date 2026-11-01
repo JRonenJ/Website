@@ -176,16 +176,26 @@ nav a:hover {
     gap: 15px;
 }
 
+/* --- UPDATE THEME TOGGLE SWITCH BUTTON --- */
 .theme-toggle-btn {
-    background: #1e293b;
+    background: var(--card-bg); /* Flipped from a fixed color to a variable */
     border: 1px solid #4b5563;
-    color: var(--text-color);
+    color: var(--text-color); /* Matches text dynamically */
     padding: 6px 12px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.85rem;
+    transition: all 0.2s ease;
 }
+
+/* Light theme button hover polish */
+body.light-theme .theme-toggle-btn {
+    border-color: #cbd5e1;
+    background: #ffffff;
+    color: #0f172a;
+}
+
 
 /* ☀️ The Light Mode Color Override Layout */
 body.light-theme {
@@ -194,23 +204,44 @@ body.light-theme {
     --card-bg: #ffffff;
 }
 
-/* Quick clean adjustments for light mode layout containers */
+/* Comprehensive Clean Elements Re-assignment for Light Theme */
 body.light-theme header, 
-body.light-theme .ethical-ad-box {
-    background-color: #e2e8f0;
-    border-bottom-color: var(--accent-color);
+body.light-theme .ethical-ad-box,
+body.light-theme .newsletter-card {
+    background-color: #e2e8f0 !important;
+    border-color: #cbd5e1 !important;
+    color: #0f172a !important;
 }
+
+body.light-theme .hybrid-center-card {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+body.light-theme #hero-right-timeline {
+    background-color: #e2e8f0 !important;
+    border-color: #cbd5e1 !important;
+}
+
+body.light-theme .timeline-row-item {
+    border-bottom-color: #cbd5e1 !important;
+}
+
 body.light-theme #search-input {
     background-color: #ffffff;
     border-color: #cbd5e1;
     color: #0f172a;
 }
+
 body.light-theme .tab-btn {
     color: #475569;
 }
+
 body.light-theme .tab-btn.active {
     color: var(--accent-color);
 }
+
 /* Hero Showcase Grid Layout */
 #hero-grid {
     display: grid;
@@ -341,9 +372,10 @@ body.light-theme .tab-btn.active {
     margin-bottom: 20px;
 }
 
-/* --- COLUMN 1: LEFT LARGE SPOTLIGHT --- */
+/* --- UPDATE COLUMN 1: LEFT LARGE SPOTLIGHT BACKGROUND --- */
 .hybrid-main-card {
-    background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.95) 100%), #1e293b;
+    /* Use var(--card-bg) inside the gradient so it flips automatically */
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.85) 100%), var(--card-bg);
     border-radius: 8px;
     border-bottom: 5px solid var(--accent-color);
     padding: 40px 30px;
@@ -354,6 +386,13 @@ body.light-theme .tab-btn.active {
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+/* Add an explicit override rule to ensure font visibility inside the large card during light mode */
+body.light-theme .hybrid-main-card h2,
+body.light-theme .hybrid-main-card p {
+    color: #ffffff; /* Keeps hero card text readable against the dark picture layer overlay */
+}
+
 .hybrid-main-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
