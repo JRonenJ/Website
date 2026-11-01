@@ -53,7 +53,13 @@ function renderHeroGrid() {
     const centerStories = editorialStories.filter(item => item.id !== mainStory.id).slice(0, 2);
     
     // 3. Select subsequent entries for the right timeline stream 
-    const timelineStories = editorialStories.filter(item => item.id !== mainStory.id && !centerStories.includes(item)).slice(0, 4);
+    const timelineStories = editorialStories.filter(item => {
+    const isNotMain = item.id !== mainStory.id;
+    const isNotCenter = !centerStories.includes(item);
+    const isNotSponsorCategory = item.category !== "Sponsor"; // 👈 BLOCKS THE "SPONSOR TBD" CARD FROM THE TIMELINE
+
+    return isNotMain && isNotCenter && isNotSponsorCategory;
+}).slice(0, 4);
 
     // Render Left Feature Spotlight Card
     if (mainStory) {
