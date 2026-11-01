@@ -3,7 +3,7 @@
     "id": 1,
     "category": "Review",
     "title": "Hollow Knight: Silksong - Worth the Generational Wait",
-    "backgroundImage": "assets\\hollow-knight-silksong-background.png",
+    "headerImage": "assets/hollow-knight-silksong-background.png",
     "excerpt": "A masterclass in level design and kinetic action combat that sets a massive new benchmark for indie metroidvanias.",
     "score": "10/10",
     "date": "2026-11-01",

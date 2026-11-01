@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🎯 CHECK IF THE USER IS ON THE ARTICLE PAGE
     if (window.location.pathname.includes("hollow-knight-article.html")) {
         loadFullArticlePage(); // If yes, only run the article loading code
+        setupCommentEngine();
     } else {
         // If no (they are on the home page), run the standard home page setup
         fetchContent();
@@ -238,17 +239,87 @@ async function loadFullArticlePage() {
         document.getElementById('article-view-title').textContent = currentArticle.title;
         document.getElementById('article-view-category').textContent = currentArticle.category;
         document.getElementById('article-view-date').textContent = currentArticle.date;
-        document.getElementById('article-view-body').textContent = currentArticle.fullReview || currentArticle.excerpt;
 
-        const scoreBox = document.getElementById('article-view-score');
-        if (currentArticle.score) {
-            scoreBox.innerHTML = `<span class="homepage-score-box">🏆 Final Rating: ${currentArticle.score}</span>`;
+        // 📸 Dynamic Header Image Renderer
+        const imgContainer = document.getElementById('article-view-image-container');
+        if (currentArticle.headerImage) {
+            imgContainer.innerHTML = `<img src="${currentArticle.headerImage}" class="article-header-banner" alt="Story Graphic">`;
         } else {
+            imgContainer.innerHTML = '';
+        }
+
+
+        document.getElementById('article-view-body').innerHTML = currentArticle.fullReview || currentArticle.excerpt;
+
+        // Dynamic category colors setup
+        const scoreBox = document.getElementById('article-view-score');
+        const badge = document.getElementById('article-view-category');
+        if (currentArticle.category === "Review") {
+            badge.style.backgroundColor = "#3b82f6";
+            if (currentArticle.score) {
+                scoreBox.innerHTML = `<span class="homepage-score-box">🏆 Score: ${currentArticle.score}</span>`;
+            }
+        } else {
+            badge.style.backgroundColor = "#ef4444";
             scoreBox.innerHTML = '';
         }
+        // Load existing comments for this article item ID
+        displayComments(articleId);
+
 
     } catch (err) {
         console.error("Critical failure during full article view rendering:", err);
     }
 }
 
+// 💬 BROWSER-PERSISTENT LOCAL STORAGE COMMENT ENGINE LOOPS
+function setupCommentEngine() {
+    const form = document.getElementById('comment-submission-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        const name = document.getElementById('user-name').value;
+        const message = document.getElementById('user-message').value;
+        const dateString = new Date().toLocaleDateString();
+
+        const newComment = { name, message, date: dateString };
+
+        // Pull previous data lists or create an empty one if blank
+        let storeKey = `article-${articleId}-comments`;
+        let existingComments = JSON.parse(localStorage.getItem(storeKey)) || [];
+        
+        existingComments.push(newComment);
+        localStorage.setItem(storeKey, JSON.stringify(existingComments));
+
+        form.reset();
+        displayComments(articleId);
+    });
+}
+
+function displayComments(articleId) {
+    const stream = document.getElementById('comments-display-stream');
+    if (!stream) return;
+
+    let storeKey = `article-${articleId}-comments`;
+    let comments = JSON.parse(localStorage.getItem(storeKey)) || [];
+
+    if (comments.length === 0) {
+        stream.innerHTML = '<p style="color:#64748b; font-size:0.9rem;">No player comments yet. Be the first to speak out!</p>';
+        return;
+    }
+
+    stream.innerHTML = comments.map(c => `
+        <div class="user-comment-bubble">
+            <div class="comment-meta">
+                <span class="comment-user-name">👤 ${c.name}</span>
+                <span>📅 ${c.date}</span>
+            </div>
+            <p style="margin:0; font-size:1rem; line-height:1.4;">${c.message}</p>
+        </div>
+    `).join('');
+}

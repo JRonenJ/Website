@@ -10,12 +10,11 @@
 
     <!-- Simple Navigation Header -->
     <header>
-        <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">← Static.VG</a></div>
+        <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">← IndiePlayer</a></div>
         <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
     </header>
 
     <main class="single-article-container">
-        <!-- Structural Content Fields To Be Populated via JavaScript -->
         <div class="article-meta-header">
             <span id="article-view-category" class="badge">CATEGORY</span>
             <span id="article-view-score"></span>
@@ -25,17 +24,40 @@
         
         <div class="author-byline">
             <div class="author-info">
-                <span class="author-name">By Adam Zayn</span>
-                <span id="article-view-date" class="publish-date">November 1, 2026</span>
+                <span class="author-name">By Editorial Staff</span>
+                <span id="article-view-date" class="publish-date">---</span>
             </div>
         </div>
 
-        <hr class="article-divider">
+        <!-- 📸 NEW: Top Spotlight Header Image Element Container -->
+        <div id="article-view-image-container"></div>
 
         <!-- Main Body Content Block -->
         <article id="article-view-body" class="article-body-content">
-            <!-- Full reading text strings load dynamically here -->
+            <!-- Full rich content loads here -->
         </article>
+
+        <hr class="article-divider">
+
+        <!-- 💬 NEW: Player-First Comment Section Component -->
+        <section class="comments-section-wrapper">
+            <h3>Community Discussion</h3>
+            
+            <!-- Comment Submission Form Box -->
+            <form id="comment-submission-form" class="comment-form">
+                <div class="form-row-split">
+                    <input type="text" id="user-name" placeholder="Your Name" required>
+                    <input type="email" id="user-email" placeholder="Your Email (Private)" required>
+                </div>
+                <textarea id="user-message" rows="4" placeholder="Join the discussion... Keep it respectful!" required></textarea>
+                <button type="submit" class="submit-comment-btn">Post Comment</button>
+            </form>
+
+            <!-- Rendered Comments List Stream -->
+            <div id="comments-display-stream">
+                <!-- User comments land here dynamically -->
+            </div>
+        </section>
     </main>
 
     <!-- Connect your engine file -->
