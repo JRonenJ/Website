@@ -24,12 +24,13 @@
   {
     "id": 3,
     "category": "Sponsor",
-    "title": "Sea of Stars - Available Now on Steam",
-    "excerpt": "A retro-inspired turn-based RPG with dynamic combat and rich storytelling. Support independent creators!",
+    "title": "TBD",
+    "excerpt": " TBD",
+    "headerImage": "../assets/hollow-knight-silksong-background.png",
     "score": null,
-    "date": "2026-10-29",
+    "date": "TBD",
     "isSponsor": true,
-    "link": "https://steampowered.com"
+    "link": "https://store.steampowered.com/app/1145350/Hades_II/"
   },
   {
     "id": 4,

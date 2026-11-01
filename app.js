@@ -172,13 +172,23 @@ function setupModalCloseListener() {
 // (Keep your existing setups unchanged below)
 function renderSponsors(sponsors) {
     const sponsorSpot = document.getElementById('sponsor-spot');
-    if (!sponsorSpot || sponsors.length === 0) return;
-    const ad = sponsors[0];
+    // If the element doesn't exist on this current page view, break out safely
+    if (!sponsorSpot) return; 
+
+    // 🎯 SMART AUTOSWITCH CORE:
+    // If there are no sponsors inside content.json, do nothing! 
+    // This allows the HTML pitch button we just made to stay on screen automatically.
+    if (sponsors.length === 0) {
+        return; 
+    }
+
+    // If an entry does exist in your database, override the box and render the live ad data
+    const ad = sponsors[0]; // Pick the first sponsor active item object
     sponsorSpot.innerHTML = `
         <div class="ethical-ad-box">
             <h4>${ad.title}</h4>
             <p>${ad.excerpt}</p>
-            <a href="${ad.link}" target="_blank" class="ad-link-btn">Check Out Indie Game</a>
+            <a href="${ad.link}" target="_blank" class="ad-link-btn">Check It Out!</a>
         </div>
     `;
 }
@@ -408,4 +418,39 @@ function formatTime(timeInSeconds) {
     const mins = Math.floor(timeInSeconds / 60);
     const secs = Math.floor(timeInSeconds % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+// 🎯 DYNAMIC AUTOMATED FORMSPREE NEWSLETTER SUBMISSION ENGINE
+function setupNewsletterForm() {
+    const form = document.getElementById('newsletter-form');
+    const feedback = document.getElementById('form-feedback-text');
+    if (!form || !feedback) return; // Safely skip if elements aren't present on the current layout page
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Lock the default browser screen reload process
+        
+        feedback.className = "feedback-msg";
+        feedback.textContent = "Deploying sublink parameters...";
+
+        const data = new FormData(form);
+        
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (response.ok) {
+                form.reset(); // Safely wipe out text field string properties on successful submission
+                feedback.className = "feedback-msg feedback-success";
+                feedback.textContent = "✔ Operational! You are subscribed to our gaming alert network.";
+            } else {
+                throw new Error("Server transmission rejected parameters.");
+            }
+        } catch (err) {
+            feedback.className = "feedback-msg feedback-error";
+            feedback.textContent = "❌ Uplink error. Please try again shortly.";
+        }
+    });
 }

@@ -12,7 +12,7 @@
     <!-- Header Navigation Bar -->
     <header>
         <div class="logo"><a href="index.html">
-            <img src="assets/static-logo.png" alt="Static.VG Brand Logo" class="navbar-logo-img">
+            <img src="assets/staticvg-logo.png" alt="Static.VG Brand Logo" class="navbar-logo-img">
         </a></div>
         <nav id="filter-tabs">
             <button class="tab-btn active" data-category="all">All Entries</button>
@@ -50,6 +50,24 @@
                 <h3 class="timeline-title">⚡ LATEST ROUNDUP</h3>
                 <div id="timeline-scroll-box"></div>
             </div>
+
+            <!-- 📋 UPDATED ETHICAL AD SPONSOR CARD BLOCK -->
+            <div class="widget ethical-ad">
+                <span class="ad-label">Sponsored Ad</span>
+                
+                <div id="sponsor-spot">
+                    <!-- This area acts as the clean fallback billboard when your database has no sponsor -->
+                    <div class="ad-pitch-wrapper">
+                        <h4 class="pitch-heading">Your Game Here?</h4>
+                        <p class="pitch-text">Showcase your independent title directly to active PC indie gamers. No malicious tracking scripts. 100% clean banner spacing blocks.</p>
+                        
+                        <!-- 📢 THE NEW TARGET ACTION BUTTON -->
+                        <a href="YOUR_PAYONEER_BOOKING_LINK" target="_blank" class="sponsor-pitch-btn">
+                            📢 Let's Sponsor Your Game!
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
 
 
@@ -63,19 +81,14 @@
             <!-- Sidebar (Top Charts, Non-Intrusive Ads, Support) -->
             <aside>
                 <div class="widget" id="support">
-                    <h3>Players-First Mission</h3>
-                    <p>No corporate shareholders. No 10-minute read times for 1 sentence of news. Just games.</p>
+                    <h3>Support Static.VG</h3>
+                    <p>If you enjoy our content, consider supporting us! Your contributions help us keep the
                     <a href="https://ko-fi.com" target="_blank" class="donate-button">Buy us a Coffee (Ko-Fi)</a>
                 </div>
 
                 <div class="widget" id="top-charts">
                     <h3>Top Games of the Month</h3>
                     <ol id="charts-list"><!-- Injected by JS --></ol>
-                </div>
-
-                <div class="widget ethical-ad">
-                    <span class="ad-label">Sponsored Alternative</span>
-                    <div id="sponsor-spot"><!-- Free custom sponsor banner goes here --></div>
                 </div>
             </aside>
         </div>

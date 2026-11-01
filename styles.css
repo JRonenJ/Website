@@ -812,7 +812,7 @@ body.light-theme .user-comment-bubble {
     transition: opacity 0.15s ease;
 }
 .navbar-logo-img:hover {
-    opacity: 0.85;         /* Soft visual response indicator on hover states */
+    opacity: 1;         /* Soft visual response indicator on hover states */
 }
 
 /* Container wrap for the article inline back button alignment hookups */
@@ -847,3 +847,99 @@ body.light-theme .article-top-nav-row .nav-back-history-btn {
     color: #475569;
 }
 
+/* 🎯 1. NAVBAR SUPPORT BUTTON CONTROLS */
+.support-btn a {
+    color: #ffffff; /* Clean white text color */
+    text-decoration: none; /* Strip away the default blue underline */
+    background-color: var(--accent-color); /* Our signature gamer blue color variable */
+    padding: 8px 16px;
+    border-radius: 20px; /* Turns the box edges into a smooth capsule pill button shape */
+    font-weight: bold;
+    font-size: 0.85rem;
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    display: inline-block;
+}
+
+.support-btn a:hover {
+    background-color: #2563eb; /* Slightly darker shift indicator value on hover state */
+    transform: translateY(-1px);
+}
+
+/* 🎯 2. SIDEBAR DONATE BUTTON LINK CONTROLS */
+.donate-button {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #10b981; /* Emerald green gamer validation badge color choice */
+    color: #ffffff !important; /* Force white text over standard anchor styles */
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.2);
+    transition: background-color 0.15s ease;
+}
+
+.donate-button:hover {
+    background-color: #059669; /* Rich dark jade green tone on pointer interactions */
+}
+
+/* 🎯 3. LIGHT THEME OVERRIDES CONFIGURATIONS */
+body.light-theme .support-btn a,
+body.light-theme .donate-button {
+    color: #ffffff !important; /* Ensures the button labels remain high-contrast solid white in light mode too */
+}
+
+/* --- SPONSOR PITCH BILLBOARD SKINS --- */
+.ad-pitch-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 5px;
+}
+
+.pitch-heading {
+    margin: 5px 0 0 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.pitch-text {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #94a3b8; /* Muted contrast description text color */
+}
+
+/* 🎯 THE PITCH CALL-TO-ACTION PILL BUTTON */
+.sponsor-pitch-btn {
+    display: inline-block;
+    background-color: var(--accent-color); /* Matches your player signature blue line */
+    color: #ffffff !important;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2);
+    transition: all 0.15s ease;
+    margin-top: 5px;
+}
+
+.sponsor-pitch-btn:hover {
+    background-color: #2563eb; /* Moves into a premium solid dark blue on pointer hover */
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.3);
+}
+
+/* Light Mode visibility assurance layer overrides */
+body.light-theme .pitch-text {
+    color: #475569;
+}
+body.light-theme .sponsor-pitch-btn {
+    color: #ffffff !important;
+}
