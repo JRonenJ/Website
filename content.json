@@ -26,10 +26,9 @@
     "category": "Sponsor",
     "title": "TBD",
     "excerpt": " TBD",
-    "headerImage": "../assets/hollow-knight-silksong-background.png",
     "score": null,
     "date": "TBD",
-    "isSponsor": true,
+    "isSponsor": false,
     "link": "https://store.steampowered.com/app/1145350/Hades_II/"
   },
   {

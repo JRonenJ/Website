@@ -38,24 +38,24 @@ async function fetchContent() {
 
 function renderHeroGrid() {
     const mainContainer = document.getElementById('hero-main-spotlight');
-    const centerStack = document.getElementById('hero-center-stack');
+    const centerStack = document.getElementById('dynamic-center-news-cards'); // 🎯 Targeted sub-container
     const rightTimeline = document.getElementById('timeline-scroll-box');
     
     if(!mainContainer || !centerStack || !rightTimeline) return;
 
-    // Filter organic content out from advertisements 
-    const operationalStories = allItems.filter(item => !item.isSponsor);
+    // 🔥 FIX 1: Filter out any items where isSponsor is true so ads NEVER blend into editorial blocks
+    const editorialStories = allItems.filter(item => item.isSponsor !== true);
 
-    // 1. Pull the targeted single main top story
-    const mainStory = operationalStories.find(item => item.featured === true) || operationalStories[0];
+    // 1. Pull the targeted single main top feature story
+    const mainStory = editorialStories.find(item => item.featured === true) || editorialStories[0];
     
-    // 2. Select two stories for the middle layout column (excluding the main story)
-    const centerStories = operationalStories.filter(item => item.id !== mainStory.id).slice(0, 2);
+    // 2. Select the next editorial stories cleanly for the middle column loop
+    const centerStories = editorialStories.filter(item => item.id !== mainStory.id).slice(0, 2);
     
-    // 3. Select subsequent chronological news segments for the right timeline stream 
-    const timelineStories = operationalStories.filter(item => item.id !== mainStory.id && !centerStories.includes(item)).slice(0, 4);
+    // 3. Select subsequent entries for the right timeline stream 
+    const timelineStories = editorialStories.filter(item => item.id !== mainStory.id && !centerStories.includes(item)).slice(0, 4);
 
-    // Render Left Feature Item Component
+    // Render Left Feature Spotlight Card
     if (mainStory) {
         const scoreBadge = mainStory.score ? `<span class="score-badge">⭐ ${mainStory.score}</span>` : '';
         mainContainer.innerHTML = `
@@ -71,7 +71,7 @@ function renderHeroGrid() {
         `;
     }
 
-    // Render Center Stack Split Elements Block
+    // Render Center Stack Stories underneath the fixed ad panel card
     centerStack.innerHTML = '';
     centerStories.forEach(story => {
         const scoreBadge = story.score ? `<span class="score-badge">⭐ ${story.score}</span>` : '';
@@ -87,7 +87,7 @@ function renderHeroGrid() {
         `;
     });
 
-    // Render Right Compact Scannable List Layout Flow
+    // Render Right Compact Timeline Feed
     rightTimeline.innerHTML = '';
     timelineStories.forEach(story => {
         rightTimeline.innerHTML += `
@@ -98,6 +98,7 @@ function renderHeroGrid() {
         `;
     });
 }
+
 function filterAndRender() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
     

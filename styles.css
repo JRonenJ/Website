@@ -943,3 +943,31 @@ body.light-theme .pitch-text {
 body.light-theme .sponsor-pitch-btn {
     color: #ffffff !important;
 }
+
+/* Ensure the center stack container flows cleanly as a vertical column box layout */
+#hero-center-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#dynamic-center-news-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Match the custom ethical ad box card wrapper design profile */
+.widget.ethical-ad {
+    background: var(--card-bg);
+    border: 2px dashed #3b82f6; /* Custom layout outline design indicator */
+    border-radius: 6px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+body.light-theme .widget.ethical-ad {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
