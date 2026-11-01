@@ -319,3 +319,16 @@ body.light-theme .tab-btn.active {
     font-size: 1.15rem;
     line-height: 1.75;
 }
+/* Layout wrapper to ensure modal headers line up side-by-side cleanly */
+.modal-badges-container {
+    display: flex;
+    align-items: center;  /* Centers them vertically together */
+    gap: 12px;            /* Adds a clean 12px horizontal buffer gap between them */
+    margin-bottom: 15px;  /* Pushes the article title down slightly */
+}
+
+/* Ensure the inline layout parameters don't cause vertical shifting */
+.modal-badges-container .score-badge {
+    margin-left: 0;       /* Resets previous margin rules */
+    display: inline-block;
+}
