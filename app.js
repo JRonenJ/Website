@@ -1,44 +1,69 @@
-// Run this function automatically when the webpage open
+// Global storage to hold data after fetching it
+let allArticles = [];
+
 document.addEventListener("DOMContentLoaded", () => {
-  fetchContent();
+    fetchContent();
+    setupTabListeners();
 });
 
-// Grab the data from our JSON "database"
 async function fetchContent() {
-  try {
-    const response = await fetch("content.json");
-    const data = await response.json();
-    renderWebsite(data);
-  } catch (error) {
-    console.error("Error pulling article content:", error);
-  }
+    try {
+        const response = await fetch('content.json');
+        allArticles = await response.json();
+        // Initially render everything
+        renderWebsite(allArticles); 
+    } catch (error) {
+        console.error("Error pulling article content:", error);
+        document.getElementById('dynamic-feed').innerHTML = '<p>Could not load articles. Check back soon!</p>';
+    }
 }
 
-// Assemble the components onto the page
-function renderWebsite(articles) {
-  const feedContainer = document.getElementById("dynamic-feed");
-  feedContainer.innerHTML = ""; // Clear temporary text
+function renderWebsite(articlesToDisplay) {
+    const feedContainer = document.getElementById('dynamic-feed');
+    feedContainer.innerHTML = ''; // Wipe current screen entries clean
 
-  articles.forEach((article) => {
-    // Create an empty card container
-    const card = document.createElement("div");
-    card.className = "card";
+    if (articlesToDisplay.length === 0) {
+        feedContainer.innerHTML = '<p class="no-content">No articles found in this category yet.</p>';
+        return;
+    }
 
-    // Check if item contains a score rating (for reviews)
-    const scoreBadge = article.score
-      ? `<span class="score">⭐ ${article.score}</span>`
-      : "";
+    articlesToDisplay.forEach(article => {
+        const card = document.createElement('div');
+        card.className = 'card';
 
-    // Build the HTML component template
-    card.innerHTML = `
+        const scoreBadge = article.score ? `<span class="score-badge">⭐ Rating: ${article.score}</span>` : '';
+
+        card.innerHTML = `
             <span class="badge">${article.category}</span>
             ${scoreBadge}
             <h3>${article.title}</h3>
             <p>${article.excerpt}</p>
-            <small>Published on: ${article.date}</small>
+            <small>📅 ${article.date}</small>
         `;
+        feedContainer.appendChild(card);
+    });
+}
 
-    // Inject the card directly onto the homepage
-    feedContainer.appendChild(card);
-  });
+function setupTabListeners() {
+    const tabButtons = document.querySelectorAll('.tab-btn');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            // Remove 'active' styling from all tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add 'active' styling to the clicked tab
+            e.target.classList.add('active');
+
+            const selectedCategory = e.target.getAttribute('data-category');
+
+            if (selectedCategory === 'all') {
+                renderWebsite(allArticles); // Show everything
+            } else {
+                // Filter down arrays using JavaScript logic
+                const filteredList = allArticles.filter(item => item.category === selectedCategory);
+                renderWebsite(filteredList);
+            }
+        });
+    });
 }
