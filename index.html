@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static.VG</title>
+    <link rel="icon" href="assets/PFP2.jpg" type="image/x-icon" style="width: 16px; height: 16px;">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation Bar -->
+    <header>
+        <div class="logo">Static.VG</div>
+        <nav>
+            <a href="#reviews">Reviews</a>
+            <a href="#news">News</a>
+            <a href="#patches">Patches</a>
+            <a href="#tips">Tips & Tricks</a>
+            <a href="#interviews">Interviews</a>
+            <a href="#ethics">Our Manifesto</a>
+        </nav>
+        <div class="support-btn"><a href="#support">💡 Support Us</a></div>
+    </header>
+
+    <main>
+        <!-- Dynamic Hero Grid (Top Stories) -->
+        <section id="hero-grid">
+            <div id="main-feature"><!-- Injected by JS --></div>
+            <div id="side-features"><!-- Injected by JS --></div>
+        </section>
+
+        <!-- Main Content Area -->
+        <div class="content-wrapper">
+            <section id="articles-feed">
+                <h2>Latest Entries</h2>
+                <div id="dynamic-feed"><!-- All categorized content lands here via JS --></div>
+            </section>
+
+            <!-- Sidebar (Top Charts, Non-Intrusive Ads, Support) -->
+            <aside>
+                <div class="widget" id="support">
+                    <h3>Players-First Mission</h3>
+                    <p>No corporate shareholders. No 10-minute read times for 1 sentence of news. Just games.</p>
+                    <a href="https://ko-fi.com" target="_blank" class="donate-button">Buy us a Coffee (Ko-Fi)</a>
+                </div>
+
+                <div class="widget" id="top-charts">
+                    <h3>Top Games of the Month</h3>
+                    <ol id="charts-list"><!-- Injected by JS --></ol>
+                </div>
+
+                <div class="widget ethical-ad">
+                    <span class="ad-label">Sponsored Alternative</span>
+                    <div id="sponsor-spot"><!-- Free custom sponsor banner goes here --></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
