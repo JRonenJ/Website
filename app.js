@@ -64,34 +64,43 @@ function renderHeroGrid() {
     // Render Left Feature Spotlight Card
     if (mainStory) {
         const scoreBadge = mainStory.score ? `<span class="score-badge">⭐ ${mainStory.score}</span>` : '';
+        const bgStyle = mainStory.backgroundImage 
+        ? `style="background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(11, 15, 25, 0.95) 100%), url('${mainStory.backgroundImage}'); background-size: cover; background-position: center;"`
+        : '';
         mainContainer.innerHTML = `
-            <div class="hybrid-main-card" onclick="openArticleModal(${mainStory.id})">
-                <div>
-                    <span class="badge">${mainStory.category}</span>
-                    ${scoreBadge}
-                </div>
-                <h2>${mainStory.title}</h2>
-                <p>${mainStory.excerpt}</p>
-                <small>📅 Published: ${mainStory.date}</small>
+        <div class="hybrid-main-card" ${bgStyle} onclick="openArticleModal(${mainStory.id})">
+            <div>
+                <span class="badge">${mainStory.category}</span>
+                ${scoreBadge}
             </div>
-        `;
-    }
+            <h2>${mainStory.title}</h2>
+            <p>${mainStory.excerpt}</p>
+            <small>📅 Published: ${mainStory.date}</small>
+        </div>
+    `;
+}
 
     // Render Center Stack Stories underneath the fixed ad panel card
     centerStack.innerHTML = '';
-    centerStories.forEach(story => {
-        const scoreBadge = story.score ? `<span class="score-badge">⭐ ${story.score}</span>` : '';
-        centerStack.innerHTML += `
-            <div class="hybrid-center-card" onclick="openArticleModal(${story.id})">
-                <div>
-                    <span class="badge">${story.category}</span>
-                    ${scoreBadge}
-                    <h3>${story.title}</h3>
-                </div>
-                <small>📅 ${story.date}</small>
+centerStories.forEach(story => {
+    const scoreBadge = story.score ? `<span class="score-badge">⭐ ${story.score}</span>` : '';
+    
+    // 🎯 SMART BACKGROUND PHOTO CONTROLLER FOR MIDDLE CARDS:
+    const bgStyle = story.backgroundImage 
+        ? `style="background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(11, 15, 25, 0.95) 100%), url('${story.backgroundImage}'); background-size: cover; background-position: center;"`
+        : '';
+
+    centerStack.innerHTML += `
+        <div class="hybrid-center-card" ${bgStyle} onclick="openArticleModal(${story.id})">
+            <div>
+                <span class="badge">${story.category}</span>
+                ${scoreBadge}
+                <h3>${story.title}</h3>
             </div>
-        `;
-    });
+            <small>📅 ${story.date}</small>
+        </div>
+    `;
+});
 
     // Render Right Compact Timeline Feed
     rightTimeline.innerHTML = '';

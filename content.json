@@ -3,7 +3,7 @@
     "id": 1,
     "category": "Review",
     "title": "How Team Cherry's Hollow Knight: Silksong Redefines Indie Metroidvanias",
-    "headerImage": "../assets/hollow-knight-silksong-background.png",
+    "backgroundImage": "../assets/hollow-knight-silksong-background.png",
     "excerpt": "A masterclass in level design and kinetic action combat that sets a massive new benchmark for indie metroidvanias.",
     "score": "10/10",
     "date": "2026-11-01",
@@ -19,7 +19,8 @@
     "score": null,
     "date": "2026-10-30",
     "isSponsor": false,
-    "featuredSide": true
+    "featuredSide": true,
+    "backgroundImage": "../assets/claire-obscure-background.png"
   },
   {
     "id": 3,
@@ -27,6 +28,7 @@
     "title": "5 Essential Early-Game Loadouts for Hades II",
     "excerpt": "Maximize your under-world runs using these highly efficient weapon and boon configurations designed for beginners.",
     "score": null,
+    "backgroundImage": "../assets/hollow-knight-silksong-gameplay.jpg",
     "date": "2026-10-29"
   },
   {

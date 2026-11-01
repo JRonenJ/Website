@@ -971,3 +971,33 @@ body.light-theme .widget.ethical-ad {
     background: #ffffff;
     border-color: #cbd5e1;
 }
+
+/* Ensure center cards act as proper flex anchors when rendering image layers */
+.hybrid-center-card {
+    min-height: 180px; /* Slightly taller to reveal background image details nicely */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Pushes content tags and headings elegantly to the bottom */
+}
+
+/* 💎 CONTRAST LAYER PRESERVATION FOR BANNER CARDS */
+/* If a card has an inline style attribute containing a background photo, force text properties to stay bright */
+.hybrid-main-card[style],
+.hybrid-center-card[style] {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); /* Adds a soft text shadow so words jump cleanly off the screenshot backgrounds */
+}
+
+.hybrid-main-card[style] h2,
+.hybrid-center-card[style] h3,
+.hybrid-main-card[style] p,
+.hybrid-main-card[style] small,
+.hybrid-center-card[style] small {
+    color: #ffffff !important;
+}
+
+/* Light Theme adjustments: Ensure safety text rules apply cleanly without color inversion overlapping image grids */
+body.light-theme .hybrid-main-card[style] h2,
+body.light-theme .hybrid-center-card[style] h3 {
+    color: #ffffff !important;
+}
