@@ -713,3 +713,86 @@ body.light-theme .user-comment-bubble {
     font-weight: bold;
     color: var(--text-color);
 }
+
+/* --- PREMIUM VIDEO PLAYER SKIN --- */
+.custom-video-player {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #000000;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+}
+
+.video-element {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+}
+
+/* Control Overlay Positioning System */
+.video-controls-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.6) 70%, rgba(0,0,0,0) 100%);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    opacity: 0; /* Hidden by default until mouse hovers */
+    transition: opacity 0.25s ease;
+    z-index: 10;
+}
+
+/* Reveal bar seamlessly when hovering over the video player frame */
+.custom-video-player:hover .video-controls-bar {
+    opacity: 1;
+}
+
+/* Minimal Flat Controls Button Configurations */
+.play-pause-btn, .fullscreen-toggle-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.15s;
+}
+.play-pause-btn:hover, .fullscreen-toggle-btn:hover {
+    color: var(--accent-color); /* Matches your signature gamer blue accent line */
+}
+
+/* Dynamic Progress Bar Runway Track */
+.timeline-slider-wrapper {
+    flex: 1;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    transition: height 0.1s ease;
+}
+.timeline-slider-wrapper:hover {
+    height: 8px; /* Slightly chunkier feel on mouse hover interaction paths */
+}
+.progress-bar-fill {
+    height: 100%;
+    width: 0%; /* Updates live dynamically via app.js scripts */
+    background-color: var(--accent-color);
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.time-display-badge {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}

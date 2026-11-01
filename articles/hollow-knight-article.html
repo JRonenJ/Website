@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hollow Knight Review</title>
+    <link rel="icon" href="../assets/PFP2.jpg" type="image/x-icon" style="width: 16px; height: 16px;">
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body class="article-page-body">
 
     <!-- Simple Navigation Header -->
     <header>
-        <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">← IndiePlayer</a></div>
+        <div class="logo"><a href="../index.html" style="color: inherit; text-decoration: none;">← STATIC.VG</a></div>
         <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
     </header>
 
@@ -24,17 +25,39 @@
         
         <div class="author-byline">
             <div class="author-info">
-                <span class="author-name">By Editorial Staff</span>
+                <span class="author-name">By Adam Zayn</span>
                 <span id="article-view-date" class="publish-date">---</span>
             </div>
         </div>
 
         <!-- 📸 NEW: Top Spotlight Header Image Element Container -->
-        <div id="article-view-image-container"></div>
+        <div id="article-view-header-image"></div>
+        <img id="article-view-header-image" src="../assets/hollow-knight-silksong-background.png" alt="Hollow Knight: Silksong Header Image" class="article-header-image" height="auto" width="100%">
 
         <!-- Main Body Content Block -->
         <article id="article-view-body" class="article-body-content">
             <!-- Full rich content loads here -->
+             As we know, Hollow Knight: Silksong is the highly anticipated sequel to the critically acclaimed indie game Hollow Knight. Developed by Team Cherry, Silksong promises to deliver an even more expansive and challenging experience for fans of the original. The game follows Hornet, a new protagonist, as she navigates through a mysterious kingdom filled with new enemies, intricate platforming challenges, and a captivating story.
+            
+            <!-- 📸 NEW: Top Spotlight Video Element Container -->
+                    <div class="custom-video-player" id="player-container-1">
+                <!-- The actual video element (Notice the controls attribute is completely GONE) -->
+                <video class="video-element" src="../assets/acap.mp4" prepend="metadata"></video>
+                
+                <!-- Modern control bar overlay layer -->
+                <div class="video-controls-bar">
+                    <button class="play-pause-btn">▶</button>
+                    
+                    <div class="timeline-slider-wrapper">
+                        <div class="progress-bar-fill"></div>
+                    </div>
+                    
+                    <div class="time-display-badge">0:00 / 0:00</div>
+                    
+                    <button class="fullscreen-toggle-btn">⛶</button>
+                </div>
+            </div>
+
         </article>
 
         <hr class="article-divider">

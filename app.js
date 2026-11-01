@@ -266,6 +266,8 @@ async function loadFullArticlePage() {
         // Load existing comments for this article item ID
         displayComments(articleId);
 
+        initializeCustomPlayers();
+
 
     } catch (err) {
         console.error("Critical failure during full article view rendering:", err);
@@ -322,4 +324,71 @@ function displayComments(articleId) {
             <p style="margin:0; font-size:1rem; line-height:1.4;">${c.message}</p>
         </div>
     `).join('');
+}
+
+function initializeCustomPlayers() {
+    // Scan the article content body for custom video containers
+    const players = document.querySelectorAll('.custom-video-player');
+    
+    players.forEach(player => {
+        const video = player.querySelector('.video-element');
+        const playBtn = player.querySelector('.play-pause-btn');
+        const progressWrapper = player.querySelector('.timeline-slider-wrapper');
+        const progressBar = player.querySelector('.progress-bar-fill');
+        const timeDisplay = player.querySelector('.time-display-badge');
+        const fullscreenBtn = player.querySelector('.fullscreen-toggle-btn');
+
+        // 1. Play / Pause Actions
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+                playBtn.textContent = "⏸";
+            } else {
+                video.pause();
+                playBtn.textContent = "▶";
+            }
+        }
+        playBtn.addEventListener('click', togglePlay);
+        video.addEventListener('click', togglePlay);
+
+        // Reset play icons if video runs to completion boundaries
+        video.addEventListener('ended', () => { playBtn.textContent = "▶"; });
+
+        // 2. Timeline Progress Updates Tracking Controls
+        video.addEventListener('timeupdate', () => {
+            if (video.duration === 0) return;
+            const percentage = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = `${percentage}%`;
+            
+            // Format timestamps cleanly (e.g. 0:05 / 0:30)
+            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        });
+
+        // 3. Click-to-Skip Timeline Functionality
+        progressWrapper.addEventListener('click', (e) => {
+            const rect = progressWrapper.getBoundingClientRect();
+            const clickPositionX = e.clientX - rect.left;
+            const width = rect.width;
+            const seekPercentage = clickPositionX / width;
+            
+            video.currentTime = seekPercentage * video.duration;
+        });
+
+        // 4. Native Fullscreen Integrations Switch Hookups
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                player.requestFullscreen().catch(err => console.error(err));
+            } else {
+                document.exitFullscreen();
+            }
+        });
+    });
+}
+
+// Quick mathematical string formatter for media time readouts
+function formatTime(timeInSeconds) {
+    if (isNaN(timeInSeconds)) return "0:00";
+    const mins = Math.floor(timeInSeconds / 60);
+    const secs = Math.floor(timeInSeconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
 }
