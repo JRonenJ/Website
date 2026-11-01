@@ -5,7 +5,9 @@
     "title": "Hollow Knight: Silksong - Worth the Generational Wait",
     "excerpt": "A masterclass in level design and kinetic action combat that sets a massive new benchmark for indie metroidvanias.",
     "score": "10/10",
-    "date": "2026-11-01"
+    "date": "2026-11-01",
+    "isSponsor": false,
+    "featured": true
   },
   {
     "id": 2,
@@ -13,14 +15,28 @@
     "title": "Local Indie Dev Team Releasing Free Content Update to Fight Anti-Consumer Trends",
     "excerpt": "Instead of paid battle passes, developers confirm all upcoming customization items will be unlockable solely via gameplay achievements.",
     "score": null,
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "isSponsor": false,
+    "featuredSide": true
   },
   {
     "id": 3,
+    "category": "Sponsor",
+    "title": "Sea of Stars - Available Now on Steam",
+    "excerpt": "A retro-inspired turn-based RPG with dynamic combat and rich storytelling. Support independent creators!",
+    "score": null,
+    "date": "2026-10-29",
+    "isSponsor": true,
+    "link": "https://steampowered.com"
+  },
+  {
+    "id": 4,
     "category": "Tips",
     "title": "5 Essential Early-Game Loadouts for Hades II",
     "excerpt": "Maximize your under-world runs using these highly efficient weapon and boon configurations designed for beginners.",
     "score": null,
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "isSponsor": false
   }
 ]
+

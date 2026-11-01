@@ -96,3 +96,226 @@ nav a:hover {
     margin-left: 10px;
     font-weight: bold;
 }
+.search-box-container {
+    padding: 20px 5% 0 5%;
+}
+
+#search-input {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    background-color: #1e293b;
+    border: 2px solid #4b5563;
+    border-radius: 6px;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+#search-input:focus {
+    border-color: var(--accent-color);
+}
+
+.ethical-ad-box {
+    background: #111827;
+    border: 2px dashed #3b82f6;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.ad-link-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+/* Media Query for Tablets and Mobile Phones */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    #filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .tab-btn {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Turns the 2-column grid into 1 stacked column */
+        padding: 20px 4%;
+    }
+
+    aside {
+        order: 2; /* Pushes sidebars/ads below your main articles on mobile devices */
+    }
+
+    #search-input {
+        max-width: 100%; /* Allows search input to span full screen width on phones */
+    }
+}
+/* Custom Header Control Wrap */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.theme-toggle-btn {
+    background: #1e293b;
+    border: 1px solid #4b5563;
+    color: var(--text-color);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* ☀️ The Light Mode Color Override Layout */
+body.light-theme {
+    --bg-color: #f8fafc;
+    --text-color: #0f172a;
+    --card-bg: #ffffff;
+}
+
+/* Quick clean adjustments for light mode layout containers */
+body.light-theme header, 
+body.light-theme .ethical-ad-box {
+    background-color: #e2e8f0;
+    border-bottom-color: var(--accent-color);
+}
+body.light-theme #search-input {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+body.light-theme .tab-btn {
+    color: #475569;
+}
+body.light-theme .tab-btn.active {
+    color: var(--accent-color);
+}
+/* Hero Showcase Grid Layout */
+#hero-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 20px 5%;
+}
+
+.main-hero-card {
+    background: linear-gradient(180deg, rgba(30,41,59,0.5) 0%, var(--card-bg) 100%);
+    border: 2px solid var(--accent-color);
+    padding: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.main-hero-card h2 {
+    font-size: 2.2rem;
+    margin: 10px 0;
+}
+
+#side-features {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.side-hero-card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #6366f1; /* Purple Accent */
+    cursor: pointer;
+}
+
+/* Mobile adjustments for the Hero block */
+@media (max-width: 768px) {
+    #hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .main-hero-card h2 {
+        font-size: 1.5rem;
+    }
+}
+/* Modal Background Backdrop Overlay */
+.modal-overlay {
+    display: none; /* Kept hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* The Active Content Pop-up Card Box */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto; /* Adds a scrollbar if the article text is very long */
+    padding: 40px;
+    border-radius: 12px;
+    position: relative;
+    border: 1px solid #334155;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.close-icon {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.close-icon:hover {
+    color: #ef4444; /* Turns red on hover */
+}
+
+.modal-date-text {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.modal-divider {
+    border: 0;
+    height: 1px;
+    background: #334155;
+    margin: 20px 0;
+}
+
+.modal-body-text {
+    font-size: 1.15rem;
+    line-height: 1.75;
+}

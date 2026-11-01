@@ -21,10 +21,16 @@
             <button class="tab-btn" data-category="Interview">Interviews</button>
         </nav>
 
+        <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
         <div class="support-btn"><a href="#support">💡 Support Us</a></div>
     </header>
 
     <main>
+        <!-- Search Area -->
+        <div class="search-box-container">
+            <input type="text" id="search-input" placeholder="🔍 Search reviews, news, tips...">
+        </div>
+
         <!-- Dynamic Hero Grid (Top Stories) -->
         <section id="hero-grid">
             <div id="main-feature"><!-- Injected by JS --></div>
@@ -60,5 +66,19 @@
     </main>
 
     <script src="app.js"></script>
+        
+    <!-- The Hidden Review Modal Pop-up Frame -->
+    <div id="review-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="close-modal-btn" class="close-icon">&times;</span>
+            <span id="modal-category" class="badge">Category</span>
+            <div id="modal-score-wrap"></div>
+            <h1 id="modal-title">Review Title</h1>
+            <p id="modal-date" class="modal-date-text"></p>
+            <hr class="modal-divider">
+            <div id="modal-body" class="modal-body-text">Full text goes here...</div>
+        </div>
+    </div>
+
 </body>
 </html>
