@@ -23,22 +23,21 @@
   },
   {
     "id": 3,
+    "category": "Tips",
+    "title": "5 Essential Early-Game Loadouts for Hades II",
+    "excerpt": "Maximize your under-world runs using these highly efficient weapon and boon configurations designed for beginners.",
+    "score": null,
+    "date": "2026-10-29"
+  },
+  {
+    "id": 4,
     "category": "Sponsor",
     "title": "TBD",
     "excerpt": " TBD",
     "score": null,
     "date": "TBD",
     "isSponsor": false,
-    "link": "https://store.steampowered.com/app/1145350/Hades_II/"
-  },
-  {
-    "id": 4,
-    "category": "Tips",
-    "title": "5 Essential Early-Game Loadouts for Hades II",
-    "excerpt": "Maximize your under-world runs using these highly efficient weapon and boon configurations designed for beginners.",
-    "score": null,
-    "date": "2026-10-29",
-    "isSponsor": false
+    "link": "https://store.steampowered.com/app/1145350/Hades_II/",
+    "featuredSide": true
   }
 ]
-
