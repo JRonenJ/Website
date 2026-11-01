@@ -29,40 +29,67 @@ async function fetchContent() {
 }
 
 function renderHeroGrid() {
-    const mainHeroContainer = document.getElementById('main-feature');
-    const sideHeroContainer = document.getElementById('side-features');
+    const mainContainer = document.getElementById('hero-main-spotlight');
+    const centerStack = document.getElementById('hero-center-stack');
+    const rightTimeline = document.getElementById('timeline-scroll-box');
     
-    if(!mainHeroContainer || !sideHeroContainer) return;
+    if(!mainContainer || !centerStack || !rightTimeline) return;
 
-    // Search array parameters for flags
-    const mainStory = allItems.find(item => item.featured === true);
-    const sideStories = allItems.filter(item => item.featuredSide === true).slice(0, 2);
+    // Filter organic content out from advertisements 
+    const operationalStories = allItems.filter(item => !item.isSponsor);
 
-    // Build main big spotlight feature card component block
+    // 1. Pull the targeted single main top story
+    const mainStory = operationalStories.find(item => item.featured === true) || operationalStories[0];
+    
+    // 2. Select two stories for the middle layout column (excluding the main story)
+    const centerStories = operationalStories.filter(item => item.id !== mainStory.id).slice(0, 2);
+    
+    // 3. Select subsequent chronological news segments for the right timeline stream 
+    const timelineStories = operationalStories.filter(item => item.id !== mainStory.id && !centerStories.includes(item)).slice(0, 4);
+
+    // Render Left Feature Item Component
     if (mainStory) {
-        mainHeroContainer.innerHTML = `
-            <div class="main-hero-card" onclick="openArticleModal(${mainStory.id})">
-                <span class="badge" style="width: max-content;">🔥 Top Feature</span>
+        const scoreBadge = mainStory.score ? `<span class="score-badge">⭐ ${mainStory.score}</span>` : '';
+        mainContainer.innerHTML = `
+            <div class="hybrid-main-card" onclick="openArticleModal(${mainStory.id})">
+                <div>
+                    <span class="badge">${mainStory.category}</span>
+                    ${scoreBadge}
+                </div>
                 <h2>${mainStory.title}</h2>
                 <p>${mainStory.excerpt}</p>
+                <small>📅 Published: ${mainStory.date}</small>
             </div>
         `;
     }
 
-    // Build the small secondary spotlight feature cards list
-    sideHeroContainer.innerHTML = '';
-    sideStories.forEach(story => {
-        const sideCard = document.createElement('div');
-        sideCard.className = 'side-hero-card';
-        sideCard.setAttribute('onclick', `openArticleModal(${story.id})`);
-        sideCard.innerHTML = `
-            <span class="badge">${story.category}</span>
-            <h4>${story.title}</h4>
+    // Render Center Stack Split Elements Block
+    centerStack.innerHTML = '';
+    centerStories.forEach(story => {
+        const scoreBadge = story.score ? `<span class="score-badge">⭐ ${story.score}</span>` : '';
+        centerStack.innerHTML += `
+            <div class="hybrid-center-card" onclick="openArticleModal(${story.id})">
+                <div>
+                    <span class="badge">${story.category}</span>
+                    ${scoreBadge}
+                    <h3>${story.title}</h3>
+                </div>
+                <small>📅 ${story.date}</small>
+            </div>
         `;
-        sideHeroContainer.appendChild(sideCard);
+    });
+
+    // Render Right Compact Scannable List Layout Flow
+    rightTimeline.innerHTML = '';
+    timelineStories.forEach(story => {
+        rightTimeline.innerHTML += `
+            <div class="timeline-row-item" onclick="openArticleModal(${story.id})">
+                <span class="time-stamp">⚡ ${story.category}</span>
+                <h4>${story.title}</h4>
+            </div>
+        `;
     });
 }
-
 function filterAndRender() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
     
