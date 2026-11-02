@@ -44,7 +44,8 @@ function renderHeroGrid() {
     if(!mainContainer || !centerStack || !rightTimeline) return;
 
     // 🔥 FIX 1: Filter out any items where isSponsor is true so ads NEVER blend into editorial blocks
-    const editorialStories = allItems.filter(item => item.isSponsor !== true);
+    const editorialStories = allItems.filter(item => item.isSponsor !== true && item.archived !== true);
+
 
     // 1. Pull the targeted single main top feature story
     const mainStory = editorialStories.find(item => item.featured === true) || editorialStories[0];
@@ -119,6 +120,9 @@ function filterAndRender() {
     
     const filtered = allItems.filter(item => {
         if (item.isSponsor) return false; // Hide ads from layout line stream
+
+        // 🎯 UPDATE: Hide any article that has been deactivated/archived
+        if (item.archived === true) return false;
 
         const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
         const matchesSearch = item.title.toLowerCase().includes(searchQuery) || 
