@@ -37,58 +37,70 @@
 
         <!-- Dynamic Hero Grid (Top Stories) -->
 
-        <!-- 📋 UPDATED HERO GRID SECTION -->
+        <!-- Asymmetric 3-Column Premium Showcase Hero Grid -->
         <section id="hero-grid" class="premium-hybrid-layout">
-            <!-- Column 1: Left Massive Feature Spotlight -->
             <div id="hero-main-spotlight"></div>
-            
-            <!-- Column 2: Center Layout Column (Now hosting the AD as item #1) -->
             <div id="hero-center-stack">
-                <!-- 🎯 THE SPONSOR PANEL IS NOW FIXED AS THE TOP THING IN THIS COLUMN -->
                 <div class="widget ethical-ad">
-                    <span class="ad-label">Sponsored Ad</span>
+                    <span class="ad-label">Sponsored Alternative</span>
                     <div id="sponsor-spot">
                         <div class="ad-pitch-wrapper">
                             <h4 class="pitch-heading">Your Game Here?</h4>
-                            <p class="pitch-text">Showcase your independent title directly to active PC indie gamers. No malicious tracking scripts.</p>
-                            <a href="YOUR_PAYONEER_BOOKING_LINK" target="_blank" class="sponsor-pitch-btn">
-                                📢 Let's Sponsor Your Game!
-                            </a>
+                            <p class="pitch-text">Showcase your independent title directly to active PC indie gamers.</p>
+                            <a href="YOUR_PAYONEER_BOOKING_LINK" target="_blank" class="sponsor-pitch-btn">📢 Let's Sponsor Your Game!</a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Dynamic news cards will append cleanly right under this ad box -->
                 <div id="dynamic-center-news-cards"></div>
             </div>
             
-            <!-- Column 3: Right Live Timeline Feed -->
+            <!-- Column 3: The Compact Latest Roundup Feed -->
             <div id="hero-right-timeline">
                 <h3 class="timeline-title">⚡ LATEST ROUNDUP</h3>
                 <div id="timeline-scroll-box"></div>
             </div>
         </section>
 
+        <!-- Core Two-Column Screen Layout: Main Content Stream (Left) vs Real Sidebar (Right) -->
+        <div class="main-portal-wrapper">
+            
+            <!-- LEFT EDITORIAL STREAM CONTAINER -->
+            <div class="left-editorial-stream">
+                
+                <!-- 🎯 SECTION 1: REVIEWS (2x2 Grid) -->
+                <section class="gamer-section-block">
+                    <div class="section-header-row">
+                        <h2>Reviews</h2>
+                        <a href="articles/reviews-archive.html" class="see-more-link">See More ➔</a>
+                    </div>
+                    <div id="reviews-grid" class="gamer-style-grid-2x2"></div>
+                </section>
 
+                <!-- 🎯 SECTION 2: TIPS AND TRICKS (2x2 Grid) -->
+                <section class="gamer-section-block">
+                    <div class="section-header-row">
+                        <h2>Tips and Tricks</h2>
+                        <a href="articles/tips-archive.html" class="see-more-link">See More ➔</a>
+                    </div>
+                    <div id="tips-grid" class="gamer-style-grid-2x2"></div>
+                </section>
+            </div>
 
-        <!-- Main Content Area -->
-        <div class="content-wrapper">
-            <section id="articles-feed">
-                <h2>Latest Entries</h2>
-                <div id="dynamic-feed"><!-- All categorized content lands here via JS --></div>
-            </section>
-
-            <!-- Sidebar (Top Charts, Non-Intrusive Ads, Support) -->
-            <aside>
-                <div class="widget" id="support">
-                    <h3>Support Static.VG</h3>
-                    <p>If you enjoy our content, consider supporting us! Your contributions help us keep the
-                    <a href="https://ko-fi.com" target="_blank" class="donate-button">Buy us a Coffee (Ko-Fi)</a>
+            <!-- RIGHT SIDEBAR (Now properly scaled, compact, and side-aligned) -->
+            <aside class="right-portal-sidebar">
+                <div class="widget compact-support-widget" id="support">
+                    <h3>Support IndiePlayer</h3>
+                    <p>No corporate shareholders. No clickbait tracking loops.</p>
+                    <a href="https://kashier.com" target="_blank" class="donate-button">☕ Buy us a Coffee</a>
                 </div>
 
-                <div class="widget" id="top-charts">
+                <div class="widget compact-charts-widget" id="top-charts">
                     <h3>Top Games of the Month</h3>
-                    <ol id="charts-list"><!-- Injected by JS --></ol>
+                    <ol id="charts-list">
+                        <li>Hollow Knight: Silksong</li>
+                        <li>Hades II</li>
+                        <li>Celeste</li>
+                    </ol>
                 </div>
             </aside>
         </div>

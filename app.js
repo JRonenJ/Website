@@ -22,18 +22,38 @@ async function fetchContent() {
         const response = await fetch('content.json');
         allItems = await response.json();
         
-        // 1. Render Top Layout Elements
+        // 1. Render upper spotlights
         renderHeroGrid();
         
-        // 2. Extract and display Sponsor advertisements
+        // 2. Separate and process ads
         const sponsorItems = allItems.filter(item => item.isSponsor === true);
         renderSponsors(sponsorItems);
 
-        // 3. Populate Main Timeline Stream
+        // 3. Process Lower Content Channels
         filterAndRender();
     } catch (error) {
-        console.error("Error running application render sync:", error);
+        console.error("Critical layout processing error:", error);
     }
+}
+
+function filterAndRender() {
+    const searchQuery = document.getElementById('search-input').value.toLowerCase();
+
+    // 🎯 FILTER BASELIST: Filter out advertisements up-front
+    const organicItems = allItems.filter(item => !item.isSponsor);
+
+    // Split items into their respective categorical data buckets
+    const reviewsOnly = organicItems.filter(item => item.category === "Review");
+    const tipsOnly = organicItems.filter(item => item.category === "Tips");
+
+    // Apply active search parameters smoothly if text exists
+    const searchFilter = (list) => list.filter(item => 
+        item.title.toLowerCase().includes(searchQuery) || item.excerpt.toLowerCase().includes(searchQuery)
+    );
+
+    // Limit output arrays strictly to 4 blocks (2 top, 2 bottom)
+    renderTargetGrid(searchFilter(reviewsOnly).slice(0, 4), 'reviews-grid');
+    renderTargetGrid(searchFilter(tipsOnly).slice(0, 4), 'tips-grid');
 }
 
 function renderHeroGrid() {
@@ -131,34 +151,43 @@ function filterAndRender() {
     renderFeed(filtered);
 }
 
-function renderFeed(articles) {
-    const feedContainer = document.getElementById('dynamic-feed');
-    feedContainer.innerHTML = '';
+// 🎯 THE CLEAN UNIVERSAL CELL RENDERER (Solves the duplication loop bug completely)
+function renderTargetGrid(articles, targetElementId) {
+    const container = document.getElementById(targetElementId);
+    if (!container) return;
+    container.innerHTML = '';
 
     if (articles.length === 0) {
-        feedContainer.innerHTML = '<p class="no-content">No gaming entries match your criteria.</p>';
+        container.innerHTML = '<p class="no-content" style="color:#64748b; font-size:0.9rem;">No entries match query.</p>';
         return;
     }
 
     articles.forEach(article => {
         const card = document.createElement('div');
-        card.className = 'card review-list-card';
-        card.style.cursor = 'pointer';
-        card.setAttribute('onclick', `openArticleModal(${article.id})`);
+        card.className = 'gamer-compact-card';
+        card.setAttribute('onclick', `window.openArticleModal(${article.id})`);
         
-        // 🎯 UPGRADED STRUCTURAL SCORE BADGE
+        if (article.backgroundImage) {
+            card.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(11,15,25,0.95) 100%), url('${article.backgroundImage}')`;
+            card.style.backgroundSize = 'cover';
+            card.style.backgroundPosition = 'center';
+        } else {
+            card.style.backgroundColor = 'var(--card-bg)';
+        }
+
         const scoreBadge = article.score ? `<span class="homepage-score-box">🏆 ${article.score}</span>` : '';
 
         card.innerHTML = `
-            <div class="card-header-row">
+            <div class="gamer-card-meta-row">
                 <span class="badge">${article.category}</span>
                 ${scoreBadge}
             </div>
-            <h3>${article.title}</h3>
-            <p>${article.excerpt}</p>
-            <small>📅 Published: ${article.date}</small>
+            <div class="gamer-card-info-wrap">
+                <span class="card-date">${article.date}</span>
+                <h3>${article.title}</h3>
+            </div>
         `;
-        feedContainer.appendChild(card);
+        container.appendChild(card);
     });
 }
 
@@ -244,77 +273,46 @@ function setupThemeToggle() {
     });
 }
 
-// 🎯 NEW ENGINE WRITER FUNCTION FOR THE ARTICLE PAGE
+// --- UPGRADE FULL DETAILED VIEW LOOPS WITH NATIVE STEAM WIDGETS ---
 async function loadFullArticlePage() {
     try {
-        const response = await fetch('../content.json'); // '../' steps out of the folder
+        const response = await fetch('../content.json');
         const articles = await response.json();
 
-        // Look at the address bar link and extract the ID number (like ?id=2)
         const urlParams = new URLSearchParams(window.location.search);
         const articleId = parseInt(urlParams.get('id'));
-
         const currentArticle = articles.find(item => item.id === articleId);
 
-        if (!currentArticle) {
-            document.getElementById('article-view-title').textContent = "Article Not Found";
-            return;
-        }
+        if (!currentArticle) return;
 
-        // Inject the text strings directly into your article.html structural fields
-        document.title = `${currentArticle.title} | Static.VG`;
         document.getElementById('article-view-title').textContent = currentArticle.title;
         document.getElementById('article-view-category').textContent = currentArticle.category;
-        document.getElementById('article-view-date').textContent = currentArticle.date;
-
-        // 📋 UPDATED SAFETY CONTAINER RENDERING LOGIC:
-        const imgContainer = document.getElementById('article-view-image-container');
-        if (imgContainer) {
-        if (currentArticle.headerImage) {
-        // Clear out any old content inside the box
-        imgContainer.innerHTML = ''; 
+        document.getElementById('article-view-date').textContent = `Published: ${currentArticle.date}`;
         
-        // Create the image element safely using pure JavaScript mechanics
-        const articleImg = document.createElement('img');
-        
-        // Pass the image path directly (e.g. "../assets/banner.jpg")
-        articleImg.src = currentArticle.headerImage; 
-        articleImg.className = "article-header-banner";
-        articleImg.alt = "Story Headline Graphic Banner";
-        
-        // Safely slide the completed image element into your container box
-        imgContainer.appendChild(articleImg);
-    } else {
-        imgContainer.innerHTML = '';
-    }
-}
-
-        // Wrap your body text injector with a safety check too!
         const bodyContainer = document.getElementById('article-view-body');
         if (bodyContainer) {
-            bodyContainer.innerHTML = currentArticle.fullReview || currentArticle.excerpt;
-        }
-
-        // Dynamic category colors setup
-        const scoreBox = document.getElementById('article-view-score');
-        const badge = document.getElementById('article-view-category');
-        if (currentArticle.category === "Review") {
-            badge.style.backgroundColor = "#3b82f6";
-            if (currentArticle.score) {
-                scoreBox.innerHTML = `<span class="homepage-score-box">🏆 Score: ${currentArticle.score}</span>`;
+            let richBodyHtml = currentArticle.fullReview || currentArticle.excerpt;
+            
+            // 🎯 STEAM WIDGET AUTO INJECTOR MECHANICS
+            if (currentArticle.steamAppId) {
+                const widgetHtml = `
+                    <div class="steam-buy-widget">
+                        <div class="steam-widget-header">— Buy Today —</div>
+                        <h4 class="steam-card-title">${currentArticle.title.split(':')[0]}</h4>
+                        <img src="${currentArticle.backgroundImage}" class="steam-card-img" alt="Steam Asset">
+                        <p class="steam-card-desc">${currentArticle.steamDesc || currentArticle.excerpt}</p>
+                        <div class="steam-platform-row">💻 Windows</div>
+                        <a href="${currentArticle.steamAppId}" target="_blank" class="buy-steam-btn">Buy on Steam</a>
+                    </div>
+                `;
+                richBodyHtml += widgetHtml;
             }
-        } else {
-            badge.style.backgroundColor = "#ef4444";
-            scoreBox.innerHTML = '';
+            bodyContainer.innerHTML = richBodyHtml;
         }
-        // Load existing comments for this article item ID
+
         displayComments(articleId);
-
-        initializeCustomPlayers();
-
-
     } catch (err) {
-        console.error("Critical failure during full article view rendering:", err);
+        console.error("Error drawing premium dashboard asset loops:", err);
     }
 }
 

@@ -41,5 +41,61 @@
     "isSponsor": false,
     "hideFromRoundup": true,
     "backgroundImage": "../assets/elder-scrolls-6-banner.png"
+  },
+  {
+    "id": 5,
+    "category": "Review",
+    "title": "The Wolf Among Us Remastered Review: A Cinematic Masterpiece Reborn",
+    "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
+    "date": "Oct 27, 2026",
+    "score": "10/10",
+    "backgroundImage": "",
+    "steamAppId": "your-app-id-or-link",
+    "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
+    "isSponsor": false
+  },
+  {
+    "id": 6,
+    "category": "Review",
+    "title": "The Wolf Among Us Remastered Review: A Cinematic Masterpiece Reborn",
+    "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
+    "date": "Oct 27, 2026",
+    "score": "10/10",
+    "backgroundImage": "",
+    "steamAppId": "your-app-id-or-link",
+    "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
+    "isSponsor": false
+  },
+  {
+    "id": 7,
+    "category": "Review",
+    "title": "The Wolf Among Us Remastered Review: A Cinematic Masterpiece Reborn",
+    "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
+    "date": "Oct 27, 2026",
+    "score": "10/10",
+    "backgroundImage": "",
+    "steamAppId": "your-app-id-or-link",
+    "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
+    "isSponsor": false
+  },
+  {
+    "id": 8,
+    "category": "News",
+    "title": "New Update Announced for Cyberpunk 2077: A Deep Dive into the Latest Changes",
+    "excerpt": "The latest patch for Cyberpunk 2077 introduces several gameplay improvements and bug fixes across all platforms.",
+    "score": null,
+    "backgroundImage": "../assets/cyberpunk-2077-update.jpg",
+    "date": "2026-11-5",
+    "isSponsor": false
+  },
+  {
+    "id": 9,
+    "category": "Tips",
+    "title": "Top 10 Tips for Mastering Elden Ring's Combat System",
+    "excerpt": "Enhance your gameplay experience with these essential tips for navigating Elden Ring's challenging combat mechanics.",
+    "score": null,
+    "backgroundImage": "../assets/elden-ring-combat-tips.jpg",
+    "date": "2026-11-6",
+    "isSponsor": false
   }
 ]
