@@ -49,12 +49,11 @@
     "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
     "date": "Oct 27, 2026",
     "score": "10/10",
-    "backgroundImage": "",
     "steamAppId": "your-app-id-or-link",
     "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
     "isSponsor": false,
-    "hideFromRoundup": true
-
+    "hideFromRoundup": true,
+    "backgroundImage": "../assets/wolf-among-us.png"
   },
   {
     "id": 6,
