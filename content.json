@@ -33,13 +33,13 @@
   },
   {
     "id": 4,
-    "category": "Sponsor",
-    "title": "TBD",
-    "excerpt": " TBD",
+    "category": "News",
+    "title": "The Elder Scrolls VI: Sentinel Reportedly Subtitled 'Sentinel' With New Story Details Revealed Ahead of Rumored Announcement",
+    "excerpt": "According to IGN, the next installment in the Elder Scrolls franchise will be subtitled 'Sentinel' and will feature a new story set in a previously unexplored region of Tamriel.",
     "score": null,
-    "date": "TBD",
+    "date": "2026-10-28",
     "isSponsor": false,
-    "link": "https://store.steampowered.com/app/1145350/Hades_II/",
-    "featuredSide": true
+    "featuredSide": true,
+    "backgroundImage": "../assets/elder-scrolls-6-banner.png"
   }
 ]
