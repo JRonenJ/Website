@@ -1,36 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reviews - Static.VG</title>
-    <link rel="icon" href="../assets/PFP2.jpg" type="image/x-icon" style="width: 16px; height: 16px;">
-    <link rel="stylesheet" href="../styles.css">
-</head>
-<body>
-
+    <link
+      rel="icon"
+      href="../assets/PFP2.jpg"
+      type="image/x-icon"
+      style="width: 16px; height: 16px"
+    />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
     <!-- Simple Navigation Header -->
     <header>
-        <div class="header-navigation-left">
-
-            <!-- Brand Image Logo functioning as home navigation -->
-            <div class="logo">
-                <a href="../index.html">
-                    <img src="../assets/STATIC.VG Logo.png" alt="Static.VG Brand Logo" class="navbar-logo-img">
-                </a>
-            </div>
+      <div class="header-navigation-left">
+        <!-- Brand Image Logo functioning as home navigation -->
+        <div class="logo">
+          <a href="../index.html">
+            <img
+              src="../assets/STATIC.VG Logo.png"
+              alt="Static.VG Brand Logo"
+              class="navbar-logo-img"
+            />
+          </a>
         </div>
+      </div>
 
-        <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
+      <button id="theme-toggle" class="theme-toggle-btn">☀️ Light Mode</button>
     </header>
 
     <main class="archive-stream-wrapper">
-        <h1 class="archive-title">All Reviews</h1>
-        
-        <!-- Every single review record from your JSON file drops inside here -->
-        <div id="all-reviews-archive-grid" class="gamer-style-grid-4x1"></div>
+      <h1 class="archive-title">All Reviews</h1>
+
+      <!-- Every single review record from your JSON file drops inside here -->
+      <div id="all-reviews-archive-grid" class="gamer-style-grid-4x1"></div>
     </main>
 
     <script src="../app.js"></script>
-</body>
+  </body>
 </html>
