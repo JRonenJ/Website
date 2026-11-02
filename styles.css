@@ -1141,53 +1141,39 @@ body.light-theme .steam-buy-widget { background-color: #ffffff; border-color: #c
     gap: 40px;
 }
 
-/* --- THE 2X2 COMPACT SQUARE GRID MATRIX --- */
-.gamer-style-grid-2x2 {
+/* --- THE 4-CARD FLAT SYSTEM DESIGN --- */
+.gamer-style-grid-4x1 {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Locks layout strictly into 2 side-by-side items */
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr); /* 🎯 Creates exactly 4 side-by-side card items per row */
+    gap: 16px;
+    width: 100%;
 }
 
-.gamer-section-block {
-    margin-bottom: 20px;
+/* Full Width Constraints for the Catalog Content Feeds */
+.archive-stream-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 5%;
 }
 
-/* --- SCALED SIDEBAR UI MECHANICS --- */
-.right-portal-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+.archive-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 12px;
 }
 
-.widget.compact-support-widget,
-.widget.compact-charts-widget {
-    background-color: var(--card-bg);
-    border: 1px solid #1f2937;
-    padding: 20px;
-    border-radius: 8px;
-    box-sizing: border-box;
-    width: 100%; /* Keeps elements from breaking out into huge horizontal widths */
-}
-
-.widget.compact-support-widget p {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: #94a3b8;
-}
-
-#charts-list {
-    padding-left: 20px;
-    margin: 10px 0 0 0;
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-
-/* Responsive collapse rules for smaller screens */
-@media (max-width: 1024px) {
-    .main-portal-wrapper {
-        grid-template-columns: 1fr; /* Stacks the sidebar neatly below on phones */
-    }
-    .gamer-style-grid-2x2 {
-        grid-template-columns: 1fr; /* Drops to 1 card layout line on mobile viewports */
+/* Responsive breakdowns for tablet and phone layouts */
+@media (max-width: 1200px) {
+    .gamer-style-grid-4x1 {
+        grid-template-columns: repeat(2, 1fr); /* Drop down to 2x2 layout lines on smaller viewports */
     }
 }
+
+@media (max-width: 600px) {
+    .gamer-style-grid-4x1 {
+        grid-template-columns: 1fr; /* Stack everything flat into 1 vertical line on pocket screens */
+    }
+}
+

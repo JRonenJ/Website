@@ -52,31 +52,31 @@
     "backgroundImage": "",
     "steamAppId": "your-app-id-or-link",
     "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
-    "isSponsor": false
+    "isSponsor": false,
+    "hideFromRoundup": true
+
   },
   {
     "id": 6,
-    "category": "Review",
-    "title": "The Wolf Among Us Remastered Review: A Cinematic Masterpiece Reborn",
-    "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
-    "date": "Oct 27, 2026",
-    "score": "10/10",
-    "backgroundImage": "",
-    "steamAppId": "your-app-id-or-link",
-    "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
-    "isSponsor": false
+    "category": "News",
+    "title": "New Update Announced for Cyberpunk 2077: A Deep Dive into the Latest Changes",
+    "excerpt": "The latest patch for Cyberpunk 2077 introduces several gameplay improvements and bug fixes across all platforms.",
+    "score": null,
+    "backgroundImage": "../assets/cyberpunk-2077-update.jpg",
+    "date": "2026-11-5",
+    "isSponsor": false,
+    "hideFromRoundup": true
   },
   {
     "id": 7,
-    "category": "Review",
-    "title": "The Wolf Among Us Remastered Review: A Cinematic Masterpiece Reborn",
-    "excerpt": "A dark detective thriller where folklore is real, violence is chilling, and choices matter.",
-    "date": "Oct 27, 2026",
-    "score": "10/10",
-    "backgroundImage": "",
-    "steamAppId": "your-app-id-or-link",
-    "steamDesc": "A dark detective thriller where folklore is real, violence is chilling, and every choice has consequences.",
-    "isSponsor": false
+    "category": "Tips",
+    "title": "Top 10 Tips for Finishing Dark Souls III: A Comprehensive Guide for Beginners",
+    "excerpt": "Get the most out of your journey through the Firelink Shrine with these essential tips.",
+    "score": null,
+    "backgroundImage": "../assets/dark-souls-iii-tips.jpg",
+    "date": "2026-11-6",
+    "isSponsor": false,
+    "hideFromRoundup": true
   },
   {
     "id": 8,
@@ -86,7 +86,8 @@
     "score": null,
     "backgroundImage": "../assets/cyberpunk-2077-update.jpg",
     "date": "2026-11-5",
-    "isSponsor": false
+    "isSponsor": false,
+    "hideFromRoundup": true
   },
   {
     "id": 9,
@@ -96,6 +97,7 @@
     "score": null,
     "backgroundImage": "../assets/elden-ring-combat-tips.jpg",
     "date": "2026-11-6",
-    "isSponsor": false
+    "isSponsor": false,
+    "hideFromRoundup": true
   }
 ]

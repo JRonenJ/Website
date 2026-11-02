@@ -2,19 +2,29 @@ let allItems = [];
 let currentCategory = 'all';
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 🎯 CHECK IF THE USER IS ON THE ARTICLE PAGE
-    if (window.location.pathname.includes("hollow-knight-article.html")) {
-        loadFullArticlePage(); // If yes, only run the article loading code
+    const currentPath = window.location.pathname;
+
+    // 🎯 DYNAMIC MULTI-PAGE ROUTER LOGIC SCRIPT:
+    if (currentPath.includes("hollow-knight-article.html")) {
+        loadFullArticlePage();
         setupCommentEngine();
-    } else {
-        // If no (they are on the home page), run the standard home page setup
+    } 
+    else if (currentPath.includes("reviews-see-more-article-page.html")) {
+        loadArchiveCollectionPage("Review", "all-reviews-archive-grid");
+    } 
+    else if (currentPath.includes("tips-see-more-article-page.html")) {
+        loadArchiveCollectionPage("Tips", "all-tips-archive-grid");
+    } 
+    else {
+        // Run standard home index tasks if user is on the main landing dashboard
         fetchContent();
         setupTabListeners();
         setupSearchListener();
         setupNewsletterForm();
     }
-    setupThemeToggle(); // This runs on both pages perfectly
+    setupThemeToggle();
 });
+
 
 
 async function fetchContent() {
@@ -38,23 +48,20 @@ async function fetchContent() {
 
 function filterAndRender() {
     const searchQuery = document.getElementById('search-input').value.toLowerCase();
-
-    // 🎯 FILTER BASELIST: Filter out advertisements up-front
     const organicItems = allItems.filter(item => !item.isSponsor);
 
-    // Split items into their respective categorical data buckets
     const reviewsOnly = organicItems.filter(item => item.category === "Review");
     const tipsOnly = organicItems.filter(item => item.category === "Tips");
 
-    // Apply active search parameters smoothly if text exists
     const searchFilter = (list) => list.filter(item => 
         item.title.toLowerCase().includes(searchQuery) || item.excerpt.toLowerCase().includes(searchQuery)
     );
 
-    // Limit output arrays strictly to 4 blocks (2 top, 2 bottom)
+    // 🎯 GRAB EXACTLY 4 PIECES FOR HOMEPAGE GRID ROWS:
     renderTargetGrid(searchFilter(reviewsOnly).slice(0, 4), 'reviews-grid');
     renderTargetGrid(searchFilter(tipsOnly).slice(0, 4), 'tips-grid');
 }
+
 
 function renderHeroGrid() {
     const mainContainer = document.getElementById('hero-main-spotlight');
@@ -468,4 +475,56 @@ function setupNewsletterForm() {
             feedback.textContent = "❌ Uplink error. Please try again shortly.";
         }
     });
+}
+
+// 🎯 NEW UNIVERSAL UNRESTRICTED ARCHIVE STREAM LOADER
+async function loadArchiveCollectionPage(targetCategory, containerElementId) {
+    try {
+        const response = await fetch('../content.json'); // Moves back up one folder tier to find database
+        const articles = await response.json();
+        
+        const container = document.getElementById(containerElementId);
+        if (!container) return;
+        container.innerHTML = '';
+
+        // Extract every organic piece matching the specific category (No .slice filter limits!)
+        const targetList = articles.filter(item => item.category === targetCategory && !item.isSponsor);
+
+        if (targetList.length === 0) {
+            container.innerHTML = '<p>No catalog entries written yet inside this folder archive section.</p>';
+            return;
+        }
+
+        targetList.forEach(article => {
+            const card = document.createElement('div');
+            card.className = 'gamer-compact-card';
+            
+            // Redirect paths point locally within the same folder space
+            card.setAttribute('onclick', `window.location.href = 'hollow-knight-article.html?id=${article.id}'`);
+            
+            if (article.backgroundImage) {
+                card.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(11,15,25,0.95) 100%), url('../${article.backgroundImage}')`;
+                card.style.backgroundSize = 'cover';
+                card.style.backgroundPosition = 'center';
+            } else {
+                card.style.backgroundColor = 'var(--card-bg)';
+            }
+
+            const scoreBadge = article.score ? `<span class="homepage-score-box">🏆 ${article.score}</span>` : '';
+
+            card.innerHTML = `
+                <div class="gamer-card-meta-row">
+                    <span class="badge">${article.category}</span>
+                    ${scoreBadge}
+                </div>
+                <div class="gamer-card-info-wrap">
+                    <span class="card-date">${article.date}</span>
+                    <h3>${article.title}</h3>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+    } catch (err) {
+        console.error("Critical error building collection grid channels:", err);
+    }
 }
