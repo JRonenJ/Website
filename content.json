@@ -39,7 +39,7 @@
     "score": null,
     "date": "2026-11-2",
     "isSponsor": false,
-    "archived": true,
+    "hideFromRoundup": true,
     "backgroundImage": "../assets/elder-scrolls-6-banner.png"
   }
 ]

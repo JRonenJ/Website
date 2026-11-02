@@ -43,8 +43,8 @@ function renderHeroGrid() {
     
     if(!mainContainer || !centerStack || !rightTimeline) return;
 
-    // 🔥 FIX 1: Filter out any items where isSponsor is true so ads NEVER blend into editorial blocks
-    const editorialStories = allItems.filter(item => item.isSponsor !== true && item.archived !== true);
+    // 🟢 RESTORE THIS TO NORMAL: Remove the archive blocker from the base list
+    const editorialStories = allItems.filter(item => item.isSponsor !== true);
 
 
     // 1. Pull the targeted single main top feature story
@@ -52,14 +52,14 @@ function renderHeroGrid() {
     
     // 2. Select the next editorial stories cleanly for the middle column loop
     const centerStories = editorialStories.filter(item => item.id !== mainStory.id).slice(0, 2);
-    
-    // 3. Select subsequent entries for the right timeline stream 
+    // 🎯 TARGETED FIX FOR RIGHT COLUMN: Filter out items marked with hideFromRoundup
     const timelineStories = editorialStories.filter(item => {
-    const isNotMain = item.id !== mainStory.id;
-    const isNotCenter = !centerStories.includes(item);
-    const isNotSponsorCategory = item.category !== "Sponsor"; // 👈 BLOCKS THE "SPONSOR TBD" CARD FROM THE TIMELINE
+        const isNotMain = item.id !== mainStory.id;
+        const isNotCenter = !centerStories.includes(item);
+        const isNotSponsorCategory = item.category !== "Sponsor";
+        const isNotHiddenFromRoundup = item.hideFromRoundup !== true; // 👈 BLOCKS IT ONLY HERE
 
-    return isNotMain && isNotCenter && isNotSponsorCategory;
+    return isNotMain && isNotCenter && isNotSponsorCategory && isNotHiddenFromRoundup;
 }).slice(0, 4);
 
     // Render Left Feature Spotlight Card
@@ -120,9 +120,6 @@ function filterAndRender() {
     
     const filtered = allItems.filter(item => {
         if (item.isSponsor) return false; // Hide ads from layout line stream
-
-        // 🎯 UPDATE: Hide any article that has been deactivated/archived
-        if (item.archived === true) return false;
 
         const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
         const matchesSearch = item.title.toLowerCase().includes(searchQuery) || 
